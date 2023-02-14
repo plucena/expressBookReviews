@@ -78,6 +78,20 @@ public_users.get('/isbn/:isbn', async (req, res) => {
 	const data = await getBooksDetailsByISBN(isbn)
 	res.send(books[data])
 })
+
+const getBooksDetailsByISBN = async isbn => {
+	try {
+		const ISBNPromise = await Promise.resolve(isbn)
+		if (ISBNPromise) {
+			return Promise.resolve(isbn)
+		} else {
+			return Promise.reject(new Error('Could not retrieve ISBN Promise.'))
+		}
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 //////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////
